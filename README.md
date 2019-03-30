@@ -12,6 +12,11 @@ In addition, the ``.s2i/environment`` file has been created to allow environment
 
 * The environment variable ``APP_CONFIG`` has been set to declare the name of the config file for ``gunicorn``.
 
+## Prerequistes
+- Linux RHEL 
+- python 3.6
+- Flash???
+
 
 ## Deployment Steps
 
@@ -22,15 +27,15 @@ In addition, the ``.s2i/environment`` file has been created to allow environment
 3. If using the ``oc`` command line tool (cli) instead of the OpenShift web console, you can run:
 
 ```
-oc sample_py_flask_app https://github.com/simple-best/os-sample-python.git
+oc   sample_py_flask_app   python:3.6~https://github.com/simple-best/os-sample-python.git
 ```
 
-4. If no language type is specified, OpenShift will determine the language by inspecting the code repository. 
+Note if no language type is specified, OpenShift will determine the language by inspecting the code repository. 
    - Because the code repository contains a ``requirements.txt``, it will subsequently be interpreted as including a Python application. 
    - When such automatic detection is used, ``python:latest`` will be used.
 
-5. If needing to select a specific Python version when using ``oc new-app``, you should instead use the form:
+5. If you don't need to select a specific Python version you should instead use:
 
 ```
-oc sample_py_flask python:3.7~https://github.com/OpenShiftDemos/os-sample-python.git
+oc   sample_py_flask   https://github.com/OpenShiftDemos/os-sample-python.git
 ```
