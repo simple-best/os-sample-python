@@ -1,8 +1,6 @@
 # Flask Sample Application
 
-This repository provides a sample Python web application implemented using the Flask web framework and hosted using ``gunicorn``. It is intended to be used to demonstrate deployment of Python web applications to OpenShift 3.
-
-## Implementation Notes
+This repository provides a sample Python web application implemented using the Flask web framework
 
 This sample Python application relies on the support provided by the default S2I builder for deploying a WSGI application using the ``gunicorn`` WSGI server. The requirements which need to be satisfied for this to work are:
 
@@ -14,24 +12,25 @@ In addition, the ``.s2i/environment`` file has been created to allow environment
 
 * The environment variable ``APP_CONFIG`` has been set to declare the name of the config file for ``gunicorn``.
 
+
 ## Deployment Steps
 
-To deploy this sample Python web application from the OpenShift web console, you should select ``python:2.7``, ``python:3.3``, ``python:3.4`` or ``python:latest``, when using _Add to project_. Use of ``python:latest`` is the same as having selected the most up to date Python version available, which at this time is ``python:3.4``.
+1. To deploy this sample Python web application from the OpenShift web console, ``python:3.7`` or ``python:latest``.
 
-The HTTPS URL of this code repository which should be supplied to the _Git Repository URL_ field when using _Add to project_ is:
+2. Use the following git URL    https://github.com/simple-best/os-sample-python.git
 
-* https://github.com/OpenShiftDemos/os-sample-python.git
-
-If using the ``oc`` command line tool instead of the OpenShift web console, to deploy this sample Python web application, you can run:
+3. If using the ``oc`` command line tool (cli) instead of the OpenShift web console, you can run:
 
 ```
-oc new-app https://github.com/OpenShiftDemos/os-sample-python.git
+oc sample_py_flask_app https://github.com/simple-best/os-sample-python.git
 ```
 
-In this case, because no language type was specified, OpenShift will determine the language by inspecting the code repository. Because the code repository contains a ``requirements.txt``, it will subsequently be interpreted as including a Python application. When such automatic detection is used, ``python:latest`` will be used.
+4. If no language type is specified, OpenShift will determine the language by inspecting the code repository. 
+   - Because the code repository contains a ``requirements.txt``, it will subsequently be interpreted as including a Python application. 
+   - When such automatic detection is used, ``python:latest`` will be used.
 
-If needing to select a specific Python version when using ``oc new-app``, you should instead use the form:
+5. If needing to select a specific Python version when using ``oc new-app``, you should instead use the form:
 
 ```
-oc new-app python:2.7~https://github.com/OpenShiftDemos/os-sample-python.git
+oc sample_py_flask python:3.7~https://github.com/OpenShiftDemos/os-sample-python.git
 ```
